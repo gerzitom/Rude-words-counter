@@ -5,6 +5,7 @@
 */
 let express = require('express')
 var bodyParser = require('body-parser')
+var cors = require('cors')
 let app = express()
 
 // create application/json parser
@@ -14,6 +15,12 @@ const Db = require('./Db.js')
 
 let db = new Db()
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 app.get('/', ((req, res) => {
   res.send('Hello')
 }))
